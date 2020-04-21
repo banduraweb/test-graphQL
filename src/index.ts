@@ -8,7 +8,7 @@ import cors from 'cors';
 const app = express();
 app.use(cors());
 
-
+const port = process.env.PORT || 80;
 
 (async (app:Application)=>{
 	try	{
@@ -17,8 +17,8 @@ app.use(cors());
 		const server = new ApolloServer({schema, context: () => ({ db })});
 		server.applyMiddleware({app, path: '/api'});
 
-		app.listen(process.env.PORT, ()=>{
-			console.log(`[app]: localhost: ${process.env.PORT} started`);
+		app.listen(port, ()=>{
+			console.log(`[app]: localhost: ${port} started`);
 		});
 
 		// const listings = await db.listings.find({}).toArray();
